@@ -1,25 +1,27 @@
 package com.company.models;
 
-public class Arvore {
+public class No {
     private int valor;
-    private Arvore esq;
-    private Arvore dir;
+    private No esq;
+    private No dir;
 
-    public Arvore(int valor, Arvore esq, Arvore dir) {
+    public No(int valor, No esq, No dir) {
         this.valor = valor;
         this.esq = esq;
         this.dir = dir;
     }
 
+    public No(){}
+
     public int getValor() {
         return valor;
     }
 
-    public Arvore getEsq() {
+    public No getEsq() {
         return esq;
     }
 
-    public Arvore getDir() {
+    public No getDir() {
         return dir;
     }
 
@@ -27,11 +29,11 @@ public class Arvore {
         this.valor = valor;
     }
 
-    public void setEsq(Arvore esq) {
+    public void setEsq(No esq) {
         this.esq = esq;
     }
 
-    public void setDir(Arvore dir) {
+    public void setDir(No dir) {
         this.dir = dir;
     }
 

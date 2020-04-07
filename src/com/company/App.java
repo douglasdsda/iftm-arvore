@@ -1,17 +1,17 @@
 package com.company;
 
-import com.company.models.Arvore;
+import com.company.models.No;
 
 import java.util.Scanner;
 
 public class App {
     int lista [];
-    Arvore raiz;
+    No root;
     int n = 0;
 
     App(int n){
         lista = new int[10];
-        raiz = null;
+        root = null;
         this.n = n;
     }
 
@@ -28,51 +28,60 @@ public class App {
     }
 
     void processar(){
-        Arvore node = null;
+        No node = null;
         for(int i =0 ; i < this.n ; i ++){
 
 
-            inserir(node,this.lista[i]);
+            inserir( this.lista[i]);
         }
 
 
         System.out.println("-------------------INICIO-----------------------------");
-        imprimir(node);
-        System.out.println("---------------------FIM----------------------------");
+        imprimir(this.root);
+
+        System.out.println("\n---------------------FIM----------------------------");
     }
 
-    public void inserir(Arvore node, int valor) {
-        //verifica se a árvore já foi criada
-        if (node != null) {
-            //Verifica se o valor a ser inserido é menor que o nodo corrente da árvore, se sim vai para subárvore esquerda
-            if (valor < node.getValor()) {
-                //Se tiver elemento no nodo esquerdo continua a busca
-                if (node.getEsq() != null) {
-                    inserir(node.getEsq(), valor);
-                } else {
-                    //Se nodo esquerdo vazio insere o novo nodo aqui
-                    System.out.println("  Inserindo " + valor + " a esquerda de " + node.getValor());
-                    node.setEsq(new Arvore(valor, null, null));
+    public void inserir(int v) {
+        No novo = new No();
+        novo.setValor(v) ;
+        novo.setDir(null);
+        novo.setEsq(null);
+
+        if (root == null) root = novo;
+        else  {
+            No atual = root;
+            No anterior;
+            while(true) {
+                anterior = atual;
+                if (v <= atual.getValor()) {
+                    atual = atual.getEsq();
+                    if (atual == null) {
+                        anterior.setEsq(novo);
+                        return;
+                    }
                 }
-                //Verifica se o valor a ser inserido é maior que o nodo corrente da árvore, se sim vai para subárvore direita
-            } else if (valor > node.getValor()) {
-                //Se tiver elemento no nodo direito continua a busca
-                if (node.getDir() != null) {
-                    inserir(node.getDir(), valor);
-                } else {
-                    //Se nodo direito vazio insere o novo nodo aqui
-                    System.out.println("  Inserindo " + valor + " a direita de " + node.getValor());
-                    node.setDir(new Arvore(valor, null, null));
+                else {
+                    atual = atual.getDir();
+                    if (atual == null) {
+                        anterior.setDir(novo);
+                        return;
+                    }
                 }
             }
         }
+
     }
 
-    void imprimir(Arvore no){
+    void imprimir(No no){
         if(no != null){
+
             imprimir(no.getEsq());
-            System.out.println(no.getValor());
+
+            System.out.print(no.getValor());
             imprimir(no.getDir());
+
+
         }
     }
 }

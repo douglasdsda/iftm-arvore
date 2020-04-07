@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        App app = new App(1);
+        App app = new App(5);
         app.lerDados();
         app.processar();
     }
