@@ -10,7 +10,7 @@ public class App {
     int n = 0;
 
     App(int n){
-        lista = new int[10];
+        lista = new int[n];
         root = null;
         this.n = n;
     }
